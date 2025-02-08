@@ -12,8 +12,8 @@ int main(){
     int prediction = predict(input);
     
     //colocar no 7SegDisplay
-    if(prediction < 0) printf("Looks like nothing.\n");
-    else printf("Looks like %d.\n", prediction);
+    if(prediction < 0) printf("\nLooks like nothing.\n");
+    else printf("\nLooks like %d.\n", prediction);
     
     return 0;
 }
@@ -183,7 +183,14 @@ int predict(char* bitmap){
     brain[260] = brain[233] || brain[234] || brain[235] || brain[242] || brain[243] || brain[261] || brain[262] || brain[263];
     
     for(int i = 1; i < 300; i++){
-        if(brain[i]) printf("neuronio %d\n", i);
+        if(i == 1) printf("\nretina:\n");
+        if(i == 26) printf("\nV1:\n");
+        if(i == 77) printf("\nV2:\n");
+        if(i == 156) printf("\nV4:\n");
+        if(i == 251) printf("\nIT:\n");
+        if(i == 291) printf("\nV4 (complex):\n");
+        
+        if(brain[i]) printf("  neuron %d\n", i);
     }
     
     if(brain[259]) return 8;
