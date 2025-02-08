@@ -5,19 +5,17 @@ int predict(char* bitmap);
 
 int main(){
     //pegar entrada (25 bytes)
-    char input[30] = {
-        0, 1, 1, 1, 0,
-        0, 1, 0, 0, 0,
-        0, 1, 1, 1, 0,
-        0, 0, 0, 1, 1,
-        0, 0, 1, 0, 0,
-    };
+    char input[25];
+    for(int i = 0; i < 25; i++) scanf("%d", &input[i]);
     
     //processar (recebe os bytes, preenche os neuronios, retorna predicao)
     int prediction = predict(input);
     
     //colocar no 7SegDisplay
-    printf("deve ser %d\n", prediction);
+    if(prediction < 0) printf("Looks like nothing.\n");
+    else printf("Looks like %d.\n", prediction);
+    
+    return 0;
 }
 
 int predict(char* bitmap){

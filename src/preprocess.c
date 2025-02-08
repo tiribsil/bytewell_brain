@@ -8,7 +8,7 @@ void resize_and_threshold(unsigned char* input, int input_width, int input_heigh
 
 int main(int argc, char* argv[]){
     if(argc <= 1){
-        printf("Coloque o caminho para a imagem depois do comando!\n");
+        printf("Specify the path to your image after the command!\n");
         return 1;
     }
     
@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
     int width, height, channels;
     unsigned char* image = stbi_load(image_path, &width, &height, &channels, 1);
     
-    if(!image){ printf("Erro ao carregar imagem <%s>!\n", image_path); return 1; }
+    if(!image){ printf("Could not load <%s>!\n", image_path); return 1; }
     
     char bitmap[25];
     
@@ -24,8 +24,10 @@ int main(int argc, char* argv[]){
     
     char bitmap_string[100] = {0};
     for(int i = 0; i < 5; i++) {
-        for(int j = 0; j < 5; j++)
+        for(int j = 0; j < 5; j++){
+            printf("%u ", bitmap[i * 5 + j]);
             snprintf(bitmap_string + strlen(bitmap_string), sizeof(bitmap_string) - strlen(bitmap_string), "%d, ", bitmap[i * 5 + j]);
+        }
         if(i != 4) snprintf(bitmap_string + strlen(bitmap_string), sizeof(bitmap_string) - strlen(bitmap_string), "\n");
     }
     
@@ -38,9 +40,6 @@ int main(int argc, char* argv[]){
         SetClipboardData(CF_TEXT, hMem);
         CloseClipboard();
         GlobalFree(hMem);
-        printf("Bitmap copiado para a area de transferencia!\n");
-    } else {
-        printf("Falha em abrir area de transferencia!\n");
     }
     
     stbi_image_free(image);
