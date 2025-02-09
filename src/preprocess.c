@@ -55,7 +55,7 @@ void resize_and_threshold(unsigned char* input, int input_width, int input_heigh
             long int darkness = 0;
             for(int y = i * y_ratio; y < (i + 1) * y_ratio; y++){
                 for(int x = j * x_ratio; x < (j + 1) * x_ratio; x++){
-                    darkness += (input[y * input_width + x] <= 32);
+                    darkness += (input[y * input_width + x] <= 96);
                 }
             }
             
